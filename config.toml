@@ -1,0 +1,38 @@
+[jam]
+version = 1
+
+[[on.press]]
+log = "pressed -> note={note} bank={bank} velo={velo}"
+
+[[on.slider]]
+log = "slider -> note={note} bank={bank} velo={velo}"
+
+[[on.press]]
+note = 60   # middle C
+bank = 0    # piano
+
+exec = "echo middle C - {note} {bank} {velo}"
+
+[[on.press]]
+note = 36
+bank = 9
+
+exec = "playerctl play-pause && playerctl metadata"
+
+[[on.press]]
+note = 37
+bank = 9
+
+exec = "playerctl previous && playerctl metadata"
+
+[[on.press]]
+note = 38
+bank = 9
+
+exec = "playerctl next && playerctl metadata"
+
+[[on.press]]
+note = 39
+bank = 9
+
+exec = "playerctl stop"
