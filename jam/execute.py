@@ -14,17 +14,22 @@ config = get_config()
 def lookup_and_run(data):
     status, bank, pitch, velocity = extract_midi_data(data)
 
+    for cmd in commands_by_midi_status(status):
+
+        if "note" in cmd and cmd["note"] != pitch:
+            continue
+
+        if "bank" in cmd and cmd["bank"] != bank:
+            continue
+
+        dispatch(cmd, status, bank, pitch, velocity)
+
+
+def commands_by_midi_status(status):
     if status == MidiStatus.NOTE_ON:
-
-        for cmd in config["on"]["press"]:
-
-            if "note" in cmd and cmd["note"] != pitch:
-                continue
-
-            if "bank" in cmd and cmd["bank"] != bank:
-                continue
-
-            dispatch(cmd, status, bank, pitch, velocity)
+        yield from config["on"]["press"]
+    elif status == MidiStatus.CONTROL_CHANGE:
+        yield from config["on"]["slider"]
 
 
 def dispatch(cmd, status, bank, pitch, velocity):
