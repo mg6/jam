@@ -1,17 +1,30 @@
 [jam]
 version = 1
 
+
+# log all MIDI key press & knob change events
+# {note}, {bank}, and {velo} will be populated first
+
 [[on.press]]
 log = "pressed -> note={note} bank={bank} velo={velo}"
 
 [[on.slider]]
 log = "slider -> note={note} bank={bank} velo={velo}"
 
+
+# run example shell command on specific note
+# inspect default log lines for note identifiers
+# exec contains the script to run
+
 [[on.press]]
 note = 60   # middle C
 bank = 0    # piano
 
 exec = "echo middle C - {note} {bank} {velo}"
+
+
+# use drum pads for music control
+# requires playerctl
 
 [[on.press]]
 note = 36
