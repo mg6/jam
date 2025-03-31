@@ -1,0 +1,16 @@
+[project]
+name = "jam"
+version = "1.0.0"
+description = "Jam runs shell commands in response to MIDI events"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "jack-client>=0.5.5",
+    "toml>=0.10.2",
+]
+
+[project.scripts]
+jam = "jam:main.run"
+
+[tool.uv]
+package = true

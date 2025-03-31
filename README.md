@@ -4,12 +4,13 @@ Jam runs commands of your choice in response to MIDI events!
 
 ## Usage
 
-Make sure `pipenv` is available.
+Make sure [`uv`](https://docs.astral.sh/uv/) is available.
 
-Install dependencies and run.
+Run with the following command:
 
-    pipenv sync
-    pipenv run python -m jam.run
+```sh
+uv run -- jam
+```
 
 Connect audio input using [qpwgraph](https://github.com/rncbc/qpwgraph) etc.
 
